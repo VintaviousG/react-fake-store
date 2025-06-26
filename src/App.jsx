@@ -1,28 +1,38 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Jewelery from "./pages/Jewelery/Jewelery";
+import MensClothing from "./pages/MensClothing/MensClothing";
+import WomensClothing from "./pages/WomensClothing/WomensClothing";
+import { AppBar, Toolbar, Button, Container } from "@mui/material";
+import Home from "./pages/Home";
 
-import './App.css'
-import Home from './pages/Home'
-import About from './pages/About'
-import { Routes, Route, Link } from 'react-router-dom'
-
-function App() {
-
-
-  return (
-    <>
-      <nav>
-        
-        <Link to="/">Home</Link>| {' '}
-        <Link to="/about">About</Link>
-      </nav>
-      
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='*' element={<h1>404 Not Found</h1>} />
-    </Routes>
-
+const App = () => (
+    
+        <>
+        <AppBar position="static">
+            <Toolbar>
+                <Button color="inherit" component={Link} to="/jewelery">
+                    Jewelery
+                </Button>
+                <Button color="inherit" component={Link} to="/mens">
+                    Men's Clothing
+                </Button>
+                <Button color="inherit" component={Link} to="/womens">
+                    Women's Clothing
+                </Button>
+            </Toolbar>
+        </AppBar>
+        <Container sx={{ mt: 4 }}>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/jewelery" element={<Jewelery />} />
+                <Route path="/mens" element={<MensClothing />} />
+                <Route path="/womens" element={<WomensClothing />} />
+                <Route path="*" element={<Jewelery />} />
+            </Routes>
+        </Container>
+    
     </>
-  )
-}
+);
 
-export default App
+export default App;
