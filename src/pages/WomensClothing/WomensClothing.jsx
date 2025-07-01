@@ -1,6 +1,7 @@
 import React from "react";
 import { useProducts } from "../../hooks/useProducts";
 import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const WomensClothing = () => {
     const { products, loading, error } = useProducts("women's clothing");
@@ -16,7 +17,11 @@ const WomensClothing = () => {
             <Grid container spacing={3}>
                 {products.map((product) => (
                     <Grid item xs={12} sm={6} md={4} key={product.id}>
-                        <Card sx={{ maxWidth: 345, height: "100%" }}>
+                        <Card sx={{ maxWidth: 345, height: "100%" }}
+                        
+    component={Link}
+                            to={`/jewelery/${product.id}`}                        
+                        >
                             <CardMedia
                                 component="img"
                                 height="200"
