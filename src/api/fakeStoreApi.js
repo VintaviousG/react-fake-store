@@ -16,3 +16,11 @@ export const fetchCategories = async () => {
     if (!response.ok) throw new Error("Failed to fetch categories");
     return response.json();
 };
+
+//Fetching product details by ID from the Fake Store API
+//Then returning the product details in JSON format
+export const fetchProductById = async (id) => {
+    const response = await fetch(`${BASE_URL}/products/${id}`);
+    if (!response.ok) throw new Error("Failed to fetch product details");
+    return response.json();
+}
