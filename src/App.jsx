@@ -7,7 +7,7 @@ import MensClothing from "./pages/MensClothing/MensClothing";
 import WomensClothing from "./pages/WomensClothing/WomensClothing";
 import { AppBar, Toolbar, Button, Container } from "@mui/material";
 import Home from "./pages/Home";
-import MentsDetail from "./pages/MensClothing/MensDetail";
+import MensDetail from "./pages/MensClothing/MensDetail";
 
 const App = () => (
     
@@ -36,7 +36,7 @@ const App = () => (
                 <Route path="/jewelery" element={<Jewelery />} />
                 <Route path="jewelery/:id" element={<JeweleryDetail />} />
                 <Route path="/mens" element={<MensClothing />} />
-                <Route path="mens/:id" element={<MentsDetail />} />
+                <Route path="mens/:id" element={<MensDetail />} />
                 <Route path="/womens" element={<WomensClothing />} />
                 <Route path="womens/:id" element={<WomensClothing />} />
                 <Route path="*" element={<Jewelery />} />

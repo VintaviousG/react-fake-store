@@ -54,7 +54,7 @@ function Home() {
         return <Typography color="error">Error loading products.</Typography>;
 
     return (
-        <Box width={"auto%"}>
+        <Box width={"auto"}>
             <Typography variant="h4" sx={{ mb: 3 }}>
                 Featured Products
             </Typography>

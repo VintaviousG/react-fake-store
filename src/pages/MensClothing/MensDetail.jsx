@@ -11,7 +11,7 @@ import { CircularProgress,  Container,
   Typography,
   Box, } from "@mui/material";
 
-const MentsDetail = () => {
+const MensDetail = () => {
     const { id } = useParams(); // Get the product ID from the URL parameters
     const [product, setProduct] = useState(null); // State to hold the product details
     const [loading, setLoading] = useState(true); // State to manage loading state
@@ -69,4 +69,4 @@ const MentsDetail = () => {
     );
 }
 
-export default MentsDetail;
+export default MensDetail;
