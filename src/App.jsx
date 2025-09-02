@@ -4,18 +4,18 @@ import Jewelery from "./pages/Jewelery/Jewelery";
 import JeweleryDetail from "./pages/Jewelery/JeweleryDetail";
 
 import MensClothing from "./pages/MensClothing/MensClothing";
+import MensDetail from "./pages/MensClothing/MensDetail";
+1;
 import WomensClothing from "./pages/WomensClothing/WomensClothing";
+import WomensDetail from "./pages/WomensClothing/WomensDetail";
 import { AppBar, Toolbar, Button, Container } from "@mui/material";
 import Home from "./pages/Home";
-import MensDetail from "./pages/MensClothing/MensDetail";
 
 const App = () => (
-    
-        <>
+    <>
         <AppBar position="static">
             <Toolbar>
                 <Button color="inherit" component={Link} to="/">
-                    
                     Home
                 </Button>
                 <Button color="inherit" component={Link} to="/jewelery">
@@ -29,7 +29,7 @@ const App = () => (
                 </Button>
             </Toolbar>
         </AppBar>
-        
+
         <Container sx={{ mt: 4 }}>
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -38,11 +38,10 @@ const App = () => (
                 <Route path="/mens" element={<MensClothing />} />
                 <Route path="mens/:id" element={<MensDetail />} />
                 <Route path="/womens" element={<WomensClothing />} />
-                <Route path="womens/:id" element={<WomensClothing />} />
+                <Route path="womens/:id" element={<WomensDetail />} />
                 <Route path="*" element={<Jewelery />} />
             </Routes>
         </Container>
-    
     </>
 );
 

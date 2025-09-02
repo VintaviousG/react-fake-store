@@ -19,7 +19,7 @@ const WomensClothing = () => {
                     <Grid item xs={12} sm={6} md={4} key={product.id}>
                         <Card
                             sx={{ maxWidth: 345, height: "100%" }}
-                            component={Link} to={`/womens/${product.id}`}
+                            
                         >
                             <CardMedia
                                 component="img"
@@ -33,12 +33,17 @@ const WomensClothing = () => {
                                 }}
                             />
                             <CardContent>
-                                <Typography variant="h6" gutterBottom>
+                            <Typography
+                                    variant="h6"
+                                    gutterBottom
+                                    component={Link}
+                                    to={`/womens/${product.id}`}
+                                >
                                     {product.title}
                                 </Typography>
                                 <Typography
                                     variant="subtitle1"
-                                    color="text.secondary"
+                                    color="primary"
                                 >
                                     ${product.price}
                                 </Typography>
