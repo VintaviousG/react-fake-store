@@ -1,7 +1,11 @@
 // Womens Clothing Details Page
-import React, { useEffect, useState } from "react";
+//import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchProductById } from "../../api/fakeStoreApi";
+//import { fetchProductById } from "../../api/fakeStoreApi";
+import { useProductDetail } from "../../hooks/useProductDetail";
+
+
+
 import { CircularProgress,   Container,
   Grid,
   Card,
@@ -13,16 +17,8 @@ import { CircularProgress,   Container,
 
 const WomensDetail = () => {
     const { id } = useParams(); // Get the product ID from the URL parameters
-    const [product, setProduct] = useState(null); // State to hold the product details
-    const [loading, setLoading] = useState(true); // State to manage loading state
-    const [error, setError] = useState(null); // State to manage error state
-
-    useEffect(() => {
-        fetchProductById(id) // Fetch product details by ID
-            .then(setProduct) // Set the product details in state
-            .catch(setError) // Handle any errors
-            .finally(() => setLoading(false)); // Set loading to false after fetching
-    }, [id]);
+  //useProductDetail(id);
+const {product, loading, error} = useProductDetail(id);
 
     if (loading) return <CircularProgress />; // Show loading spinner while fetching data
     if (error) return <Typography color="error">Error: {error.message}</Typography>; // Show error message if there's an error
@@ -51,7 +47,8 @@ const WomensDetail = () => {
             {/* Title */}
             <Typography component="h1" variant="h4" gutterBottom>
               {product.title}
-            </Typography>
+              </Typography>
+              <p>{product.image}</p>
 
             {/* Price */}
             <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
