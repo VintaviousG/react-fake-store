@@ -5,7 +5,6 @@ import JeweleryDetail from "./pages/Jewelery/JeweleryDetail";
 
 import MensClothing from "./pages/MensClothing/MensClothing";
 import MensDetail from "./pages/MensClothing/MensDetail";
-1;
 import WomensClothing from "./pages/WomensClothing/WomensClothing";
 import WomensDetail from "./pages/WomensClothing/WomensDetail";
 import { AppBar, Toolbar, Button, Container } from "@mui/material";
