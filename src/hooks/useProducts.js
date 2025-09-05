@@ -1,23 +1,27 @@
 // Custom hook to fetch products by category
 import { useState, useEffect } from "react";
-import { fetchProductsByCategory } from "../api/fakeStoreApi";
+import { fetchProductsWithoutElectronics, normalizeImageUrl } from "../api/fakeStoreApi";
 
 // useProducts hook to fetch products based on the provided category
+// Custom hook to fetch products by category
 export const useProducts = (category) => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-// Initialize state for products, loading, and error
-    useEffect(() => {
-        setLoading(true);
-        //This function fetches the products based on the category passed to the function
-        fetchProductsByCategory(category)
-            //.then is used to handle the promise returned by fetchProductsByCategory 
-            //If any error use .catch to handle the error, and finally is used to set loading to false
-            .then(setProducts)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    }, [category]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    return { products, loading, error };
+  useEffect(() => {
+    setLoading(true);
+    fetchProductsWithoutElectronics()
+      .then((data) => {
+        // Filter for the requested category and normalize images
+        const filtered = data
+          .filter((p) => p.category === category)
+          .map((p) => ({ ...p, image: normalizeImageUrl(p.image) }));
+        setProducts(filtered);
+      })
+      .catch(setError)
+      .finally(() => setLoading(false));
+  }, [category]);
+
+  return { products, loading, error };
 };
