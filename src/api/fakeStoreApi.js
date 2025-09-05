@@ -3,14 +3,47 @@ const BASE_URL = "https://fakestoreapi.com";
 
 //Fetching product from Fake Store API based on Category
 //Then returning the products in JSON format
+//const BASE_URL = "https://fakestoreapi.com";
+
 export const fetchProductsByCategory = async (category) => {
-  const response = await fetch(
-    `${BASE_URL}/products/category/${encodeURIComponent(category)}`
-  );
+  try {
+    const response = await fetch(
+      `${BASE_URL}/products/category/${encodeURIComponent(category)}`
+    );
     if (!response.ok) throw new Error("Failed to fetch products");
- 
-  return response.json();
+
+    const data = await response.json();
+
+    // Normalize images
+    const normalized = data.map((p) => ({
+      ...p,
+      image: normalizeImageUrl(p.image),
+    }));
+
+    return normalized;
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    throw error;
+  }
 };
+
+// Helper to fix broken image URLs
+export function normalizeImageUrl(url) {
+  if (!url) return "https://via.placeholder.com/200"; // fallback
+
+  // If API returns relative URL, prepend domain
+  if (!url.startsWith("http")) {
+    url = `https://fakestoreapi.com${url}`;
+  }
+
+  // Swap .jpg → .png if the jpg is broken
+  if (url.endsWith(".jpg")) {
+    return url.replace(".jpg", ".png");
+  }
+
+  return url;
+}
+
 
 //Geting a list of all categories from the Fake Store API
 //Then returning the categories in JSON format
@@ -37,7 +70,8 @@ export const fetchProductsWithoutElectronics = async () => {
     if (!response.ok) throw new Error("Failed to fetch products");
     const data = await response.json();
 
-    // Filter out electronics
+      // Filter out electronics,
+      //For the category passed in, return all products except electronics
     const filtered = data.filter(
       (product) => product.category !== "electronics"
     );
