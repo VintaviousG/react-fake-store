@@ -48,7 +48,7 @@ const {product, loading, error} = useProductDetail(id);
             <Typography component="h1" variant="h4" gutterBottom>
               {product.title}
               </Typography>
-              <p>{product.image}</p>
+              
 
             {/* Price */}
             <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
