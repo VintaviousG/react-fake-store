@@ -21,6 +21,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const Cart = () => {
+    //items array of objects in the cart from Redux store
     const items = useSelector((state) => state.cart.items);
     const dispatch = useDispatch();
     const total = items.reduce(

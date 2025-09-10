@@ -4,6 +4,7 @@ const initialState = {
     items: [], // {id, title, price, image, quantity}
 };
 
+//This Slice manages the cart state, including adding, removing, and updating item quantities.
 const cartSlice = createSlice({
     name: "cart",
     initialState,
