@@ -42,6 +42,8 @@ const Jewelery = () => {
                 <Typography variant="subtitle1" color="primary">
                   ${product.price}
                 </Typography>
+
+                
               </CardContent>
             </Card>
           </Grid>
