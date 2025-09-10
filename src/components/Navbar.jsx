@@ -1,14 +1,29 @@
-import { AppBar, Toolbar, Button} from "@mui/material";
-//import { useSelector } from "react-redux";
+import {
+    AppBar,
+    Toolbar,
+    Button,
+    Badge,
+    IconButton,
+    Typography,
+} from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-   // const cartItems = useSelector((state) => state.cart.items);
-    //const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const cartCount = useSelector((state) =>
+        state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
+    );
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="static" color="primary" elevation={2}>
                 <Toolbar>
+                    <Typography
+                        variant="h6"
+                        sx={{ flexGrow: 1, fontWeight: 700, letterSpacing: 1 }}
+                    >
+                        React Fake Store
+                    </Typography>
                     <Button color="inherit" component={Link} to="/">
                         Home
                     </Button>
@@ -21,9 +36,16 @@ const Navbar = () => {
                     <Button color="inherit" component={Link} to="/womens">
                         Women's Clothing
                     </Button>
-                     <Button color="inherit" component={Link} to="/cart">
-                                        Cart
-                                    </Button>
+                    <IconButton
+                        color="inherit"
+                        component={Link}
+                        to="/cart"
+                        sx={{ ml: 2 }}
+                    >
+                        <Badge badgeContent={cartCount} color="error">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </>
