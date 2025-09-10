@@ -1,10 +1,20 @@
 import React from "react";
 import { useProducts } from "../../hooks/useProducts";
-import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    Grid,
+    Button,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cartSlice";
 
 const WomensClothing = () => {
     const { products, loading, error } = useProducts("women's clothing");
+    const dispatch = useDispatch();
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error loading products.</div>;
@@ -17,10 +27,7 @@ const WomensClothing = () => {
             <Grid container spacing={3}>
                 {products.map((product) => (
                     <Grid item xs={12} sm={6} md={4} key={product.id}>
-                        <Card
-                            sx={{ maxWidth: 345, height: "100%" }}
-                            
-                        >
+                        <Card sx={{ maxWidth: 345, height: "100%" }}>
                             <CardMedia
                                 component="img"
                                 height="200"
@@ -33,7 +40,7 @@ const WomensClothing = () => {
                                 }}
                             />
                             <CardContent>
-                            <Typography
+                                <Typography
                                     variant="h6"
                                     gutterBottom
                                     component={Link}
@@ -41,12 +48,26 @@ const WomensClothing = () => {
                                 >
                                     {product.title}
                                 </Typography>
-                                <Typography
-                                    variant="subtitle1"
-                                    color="primary"
-                                >
+                                <Typography variant="subtitle1" color="primary">
                                     ${product.price}
                                 </Typography>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    sx={{ mt: 2 }}
+                                    onClick={() =>
+                                        dispatch(
+                                            addToCart({
+                                                id: product.id,
+                                                title: product.title,
+                                                price: product.price,
+                                                image: product.image,
+                                            })
+                                        )
+                                    }
+                                >
+                                    Add to Cart
+                                </Button>
                             </CardContent>
                         </Card>
                     </Grid>
